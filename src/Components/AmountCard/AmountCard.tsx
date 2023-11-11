@@ -18,7 +18,7 @@ const AmountCard = (): JSX.Element => {
 
   return (
     <Card p='4' w='20rem' h='25rem'>
-      <Tabs h='100%'>
+      <Tabs h='100%' colorScheme='purple'>
         <VStack justify='space-between' align='flex-start' h='100%'>
           <TabList>
             <Tab>Balance</Tab>

@@ -1,22 +1,24 @@
 import React from 'react'
 import AmountCard from '../AmountCard'
-import { Grid, GridItem, Stack } from '@chakra-ui/react'
+import { Grid, GridItem, Stack, Image } from '@chakra-ui/react'
 import BusinessProvider from '../../Context/BusinessContext/BusinessContext'
 import BalanceChart from '../BalanceChart'
 import RevenueChart from '../RevenueChart'
 import ShareholdersChart from '../ShareholdersChart'
+import logo from '../../Assets/logo.png'
 
 const Dashboard = (): JSX.Element => {
   return (
     <Stack
       justify='center'
       align='center'
-      h='80vh'
+      minH='80vh'
       w='90%'
     >
+      <Image src={logo} alt='Wealth Wave Logo' />
       <Grid
-        templateRows='repeat(2, 1fr)'
-        templateColumns='repeat(4, 1fr)'
+        templateRows={{ base: 'repeat(4, 1fr)', lg: 'repeat(2, 1fr)' }}
+        templateColumns={{ base: 'unset', lg: 'repeat(4, 1fr)' }}
         gap={4}
       >
         <BusinessProvider>
@@ -25,7 +27,6 @@ const Dashboard = (): JSX.Element => {
           </GridItem>
           <GridItem colSpan={3}>
             <BalanceChart />
-
           </GridItem>
           <GridItem colSpan={2}>
             <RevenueChart />
@@ -35,7 +36,7 @@ const Dashboard = (): JSX.Element => {
           </GridItem>
         </BusinessProvider>
       </Grid>
-    </Stack>
+    </Stack >
   )
 }
 

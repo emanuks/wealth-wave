@@ -1,12 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { BusinessContext } from '../../Context/BusinessContext/BusinessContext'
 import { type BusinessContextType } from '../../Context/BusinessContext/BusinessContext.types'
 import { numberToCurrency } from '../../Utils/numberFormatter'
 import Chart from 'react-apexcharts'
-import { Card, CardBody, CardHeader, Flex, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardHeader, Flex, HStack, Select, Text } from '@chakra-ui/react'
+import { months, monthToIndex } from '../../Utils/monthConverter'
 
 const BalanceChart = (): JSX.Element => {
-  const { business } = useContext(BusinessContext) as BusinessContextType
+  const { business, filterBusiness } = useContext(BusinessContext) as BusinessContextType
+  const [startDate, setStartDate] = useState<string>('Jan')
+  const [endDate, setEndDate] = useState<string>('Dec')
 
   const data = {
     series: [
@@ -43,7 +46,7 @@ const BalanceChart = (): JSX.Element => {
         colors: ['transparent']
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: months.filter((_, index) => index >= monthToIndex(startDate) && index <= monthToIndex(endDate))
       },
       yaxis: {
         title: {
@@ -61,10 +64,48 @@ const BalanceChart = (): JSX.Element => {
     }
   }
 
+  const handleStartDate = (date: string): void => {
+    filterBusiness([date, endDate])
+    setStartDate(date)
+  }
+
+  const handleEndDate = (date: string): void => {
+    filterBusiness([startDate, date])
+    setEndDate(date)
+  }
+
   return (
     <Card>
       <CardHeader>
-        <Text size='lg' fontWeight='bold'>Monthly Balance</Text>
+        <HStack justify='space-between'>
+          <Text size='lg' fontWeight='bold'>Monthly Balance</Text>
+          <HStack spacing={8}>
+            <HStack spacing={2}>
+              <Text fontSize='sm' fontWeight='bold'>From:</Text>
+              <Select
+                defaultValue={startDate}
+                variant='filled'
+                onChange={(e) => { handleStartDate(e.target.value) }}
+              >
+                {months.filter((_, index) => index <= monthToIndex(endDate)).map(month =>
+                  <option key={month} value={month}>{month}</option>
+                )}
+              </Select>
+            </HStack>
+            <HStack spacing={2}>
+              <Text fontSize='sm' fontWeight='bold'>To:</Text>
+              <Select
+                defaultValue={endDate}
+                variant='filled'
+                onChange={(e) => { handleEndDate(e.target.value) }}
+              >
+                {months.filter((_, index) => index >= monthToIndex(startDate)).map(month =>
+                  <option key={month} value={month}>{month}</option>
+                )}
+              </Select>
+            </HStack>
+          </HStack>
+        </HStack>
       </CardHeader>
       <CardBody>
         <Flex justify='center' align='center'>
@@ -72,7 +113,7 @@ const BalanceChart = (): JSX.Element => {
             options={data.options}
             series={data.series}
             type="bar"
-            width="450"
+            width="428"
           />
         </Flex>
       </CardBody>

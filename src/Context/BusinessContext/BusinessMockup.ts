@@ -5,7 +5,7 @@ export const businessMockup: IBusiness = {
   id: 1,
   name: 'Nigma Biz',
   totalAmount: {
-    balance: round(310000, 12),
+    balance: round(2110000, 12),
     income: round(1200000, 12),
     outcome: round(890000, 12)
   },

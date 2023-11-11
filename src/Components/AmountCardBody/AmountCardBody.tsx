@@ -6,7 +6,7 @@ interface AmountCardBodyProps {
   value: string
 }
 
-const AmountCardBody = ({ title, value }: AmountCardBodyProps) => {
+const AmountCardBody = ({ title, value }: AmountCardBodyProps): JSX.Element => {
   return (
     <CardBody>
       <Stack divider={<StackDivider />} spacing='4'>
