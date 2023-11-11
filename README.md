@@ -1,59 +1,34 @@
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+# Wealth Wave
 
-## Available Scripts
+https://wealthwave-emanuks.vercel.app/
 
-In the project directory, you can run:
+### How to Run
 
-### `yarn start`
+###### Install
 
-Runs the app in the development mode.<br /> Open
-[http://localhost:3000](http://localhost:3000) to view it in the browser.
+`yarn install`
 
-The page will reload if you make edits.<br /> You will also see any lint errors
-in the console.
+###### Run
 
-### `yarn test`
+`yarn start`
 
-Launches the test runner in the interactive watch mode.<br /> See the section
-about
-[running tests](https://facebook.github.io/create-react-app/docs/running-tests)
-for more information.
+### Description
 
-### `yarn build`
+Business' financial health dashboard focused on showcasing an overview to small businesses.
 
-Builds the app for production to the `build` folder.<br /> It correctly bundles
-React in production mode and optimizes the build for the best performance.
+Using React, Typescript, Chakra UI, React Apex Charts and Context API.
 
-The build is minified and the filenames include the hashes.<br /> Your app is
-ready to be deployed!
+I used Bags dashboard as a template, but decided to add different information that I think is relevant to small business.
 
-See the section about
-[deployment](https://facebook.github.io/create-react-app/docs/deployment) for
-more information.
+The dashboard consists in 4 main visualizations:
 
-### `yarn eject`
+- Average Monthly Balance
+- Monthly Balance
+- Total Revenue
+- Shareholders Equity
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The user can see tooltips in each chart by hovering the mouse on them, he can also filter the visualization by selecting start and end months.
 
-If you aren’t satisfied with the build tool and configuration choices, you can
-`eject` at any time. This command will remove the single build dependency from
-your project.
+Creating the charts was the most challenging part, mainly because my first choice on what library to use was [React Charts](https://react-charts.tanstack.com/) and it does not have a great documentation, after expending some time trying to use React Charts I decided to move to React Apex Charts, which has better documentation.
 
-Instead, it will copy all the configuration files and the transitive
-dependencies (webpack, Babel, ESLint, etc) right into your project so you have
-full control over them. All of the commands except `eject` will still work, but
-they will point to the copied scripts so you can tweak them. At this point
-you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for
-small and middle deployments, and you shouldn’t feel obligated to use this
-feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the
-[Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Some possible improvements are adding testing with Jest or some other test framework, move Context API state to Redux and improve responsivity.
