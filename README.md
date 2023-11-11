@@ -1,6 +1,6 @@
 # Wealth Wave
 
-https://wealthwave-emanuks.vercel.app/
+[https://wealthwave-emanuks.vercel.app/](https://wealth-wave.vercel.app/)
 
 ### How to Run
 
